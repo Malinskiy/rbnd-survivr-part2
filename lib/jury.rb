@@ -1,0 +1,36 @@
+require 'set'
+
+class Jury
+  attr_accessor :members
+
+  def initialize
+    @members = Set.new
+    @random  = Random.new
+  end
+
+  def add_member(contestant)
+    @members.add contestant
+  end
+
+  def cast_votes(finalists)
+    votes = Hash.new
+    members.each do |member|
+      votes[member] = finalists.sample
+      puts "#{member} votes #{votes[member]}"
+    end
+
+    counted = Hash.new(0)
+    votes.each { |k, v| counted[v] += 1 }
+
+    Hash[finalists.map { |finalist| [finalist, counted[finalist]] }]
+  end
+
+  def report_votes(votes)
+    votes.each { |k, v| puts "#{k} - #{v}" }
+  end
+
+  def announce_winner(votes)
+    highscore = votes.values.sort.last
+    votes.key highscore
+  end
+end
