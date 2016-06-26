@@ -1,4 +1,7 @@
 require 'set'
+require 'colorizr'
+
+String.colorize
 
 class Jury
   attr_accessor :members
@@ -16,7 +19,7 @@ class Jury
     votes = Hash.new
     members.each do |member|
       votes[member] = finalists.sample
-      puts "#{member} votes #{votes[member]}"
+      puts "#{member}".blue + "votes " + "#{votes[member]}".red
     end
 
     counted = Hash.new(0)

@@ -1,3 +1,7 @@
+require 'colorizr'
+
+String.colorize
+
 class Tribe
   attr_reader :name, :members
 
@@ -13,7 +17,7 @@ class Tribe
   end
 
   def to_s
-    @name
+    @name.green
   end
 
   def tribal_council(options)
