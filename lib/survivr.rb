@@ -35,30 +35,40 @@ end
 
 def phase_two
   initial_size = @borneo.size
-
-  immune = Array.new
+  immune       = Array.new
 
   3.times do
     @borneo.immunity_challenge.tribal_council :immune => immune
     immune.push @borneo.tribes.first.members.sample
   end
 
-  @bolsheviki = @borneo.merge('bolsheviki')
-  return initial_size - @bolsheviki.size
+  @mensheviki = @borneo.merge('mensheviki')
+  @borneo.clear_tribes
+  @borneo.add_tribe @mensheviki
+  return initial_size - @mensheviki.size
 end
 
 def phase_three
+  initial_size = @borneo.size
+  immune       = @jury
+
+  7.times do
+    immune.add_member @borneo.immunity_challenge.tribal_council :immune => immune
+  end
+
+  @merge_tribe = @borneo.merge('finalists')
+  return initial_size - @merge_tribe.size
 end
 
 
 # If all the tests pass, the code below should run the entire simulation!!
 #=========================================================
-# phase_one #8 eliminations
-# @merge_tribe = @borneo.merge("Cello") # After 8 eliminations, merge the two tribes together
-# phase_two #3 more eliminations
-# @jury = Jury.new
-# phase_three #7 elminiations become jury members
-# finalists = @merge_tribe.members #set finalists
-# vote_results = @jury.cast_votes(finalists) #Jury members report votes
-# @jury.report_votes(vote_results) #Jury announces their votes
-# @jury.announce_winner(vote_results) #Jury announces final winner
+phase_one #8 eliminations
+@merge_tribe = @borneo.merge('Cello') # After 8 eliminations, merge the two tribes together
+phase_two #3 more eliminations
+@jury = Jury.new
+phase_three #7 eliminations become jury members
+finalists    = @merge_tribe.members #set finalists
+vote_results = @jury.cast_votes(finalists) #Jury members report votes
+@jury.report_votes(vote_results) #Jury announces their votes
+@jury.announce_winner(vote_results) #Jury announces final winner
