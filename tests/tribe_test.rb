@@ -38,7 +38,7 @@ class TestTribe < Minitest::Test
   def test_tribal_council_immune_is_not_voted_off
     immune       = @coyopa.members.first
     immune_array = Array.new(9, immune)
-    9.times do
+    9.times do |i|
       result = @coyopa.tribal_council(immune: immune)
       p result
       if result.class == Contestant && result != immune

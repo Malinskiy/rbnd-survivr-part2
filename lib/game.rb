@@ -8,14 +8,14 @@ class Game
 
   #
   def merge(new_tribe_name)
-    challanges      = 8
     all_contestants = tribes.map { |tribe| tribe.members }.flatten
-
-    challanges.times do |idx|
-      all_contestants.delete_at @random.rand(all_contestants.length - idx)
-    end
-
     Tribe.new({:name => new_tribe_name, :members => all_contestants})
+  end
+
+  def size
+    size = 0
+    @tribes.each { |tribe| size += tribe.size }
+    return size
   end
 
   def add_tribe(tribe)

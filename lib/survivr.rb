@@ -20,12 +20,31 @@ require_relative 'jury'
 
 #This is where you will write your code for the three phases
 def phase_one
+  initial_size = @borneo.size
+
   8.times do
     @borneo.immunity_challenge.tribal_council Hash.new
   end
+
+  @bolsheviki = @borneo.merge('bolsheviki')
+  @borneo.clear_tribes
+  @borneo.add_tribe @bolsheviki
+
+  return initial_size - @bolsheviki.size
 end
 
 def phase_two
+  initial_size = @borneo.size
+
+  immune = Array.new
+
+  3.times do
+    @borneo.immunity_challenge.tribal_council :immune => immune
+    immune.push @borneo.tribes.first.members.sample
+  end
+
+  @bolsheviki = @borneo.merge('bolsheviki')
+  return initial_size - @bolsheviki.size
 end
 
 def phase_three

@@ -8,11 +8,18 @@ class Tribe
     puts self
   end
 
+  def size
+    @members.size
+  end
+
   def to_s
     @name
   end
 
   def tribal_council(options)
-    @members.delete (@members.select { |member| !options[:immune].eql? member }.sample)
+    immune = [*options[:immune]]
+
+    sample = @members.select { |member| !immune.include? member }.sample
+    @members.delete (sample)
   end
 end
