@@ -34,6 +34,7 @@ class Jury
 
   def announce_winner(votes)
     highscore = votes.values.sort.last
-    votes.key highscore
+    winner = votes.key highscore
+    puts 'Winner is ' + winner.to_s.green
   end
 end
