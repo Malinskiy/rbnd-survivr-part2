@@ -7,7 +7,7 @@ require_relative 'jury'
 #=========================================================
 # # Create an array of twenty hopefuls to compete on the island of Borneo
 @contestants = %w(carlos walter aparna trinh diego juliana poornima juha sofia julia fernando dena orit colt zhalisa farrin muhammed ari rasha gauri)
-@contestants.map!{ |contestant| Contestant.new(contestant) }.shuffle!
+@contestants.map! { |contestant| Contestant.new(contestant) }.shuffle!
 #
 # # Create two new tribes with names
 @coyopa = Tribe.new(name: 'Pagong', members: @contestants.shift(10))
@@ -20,6 +20,9 @@ require_relative 'jury'
 
 #This is where you will write your code for the three phases
 def phase_one
+  8.times do
+    @borneo.immunity_challenge.tribal_council Hash.new
+  end
 end
 
 def phase_two
