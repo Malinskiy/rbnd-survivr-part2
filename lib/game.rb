@@ -3,7 +3,6 @@ class Game
 
   def initialize(*tribes)
     @tribes = tribes
-    @random = Random.new
   end
 
   #
