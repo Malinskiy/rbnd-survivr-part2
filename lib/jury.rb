@@ -36,5 +36,6 @@ class Jury
     highscore = votes.values.sort.last
     winner = votes.key highscore
     puts 'Winner is ' + winner.to_s.green
+    return winner
   end
 end

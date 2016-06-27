@@ -12,12 +12,16 @@ class Tribe
     puts self
   end
 
+  def name
+    @name.green
+  end
+
   def size
     @members.size
   end
 
   def to_s
-    @name.green
+    name
   end
 
   def tribal_council(options)
